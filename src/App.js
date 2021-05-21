@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Login from "./components/Login";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import dataArray from "./components/data";
+import dataArray1 from "./components/data1";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/">About</Link>
+          </li>
+        </ul>
+      </nav> */}
+      {/* <Login /> */}
+      <div>{dataArray.map((data) => HomePage(data))}</div>
     </div>
   );
 }
