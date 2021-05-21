@@ -1,11 +1,17 @@
-import React from 'react'
+import React from "react";
+import { DynamicRenderer } from "../../handlers/DynamicRenderer";
 
-const Col = () => {
-    return (
-        <div>
-            This is a column
-        </div>
-    )
-}
+const Col = ({ children, ...props }) => {
+  return (
+    <div {...props}>
+      {children &&
+        children.map((c, k) => {
+          const Component = DynamicRenderer(c.component);
 
-export default Col
+          return <Component key={k} {...c.props} />;
+        })}
+    </div>
+  );
+};
+
+export default Col;

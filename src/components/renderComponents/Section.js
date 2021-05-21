@@ -1,11 +1,18 @@
-import React from 'react'
+import React from "react";
+import { DynamicRenderer } from "../../handlers/DynamicRenderer";
 
-const Section = () => {
-    return (
-        <div>
-            This is a section
-        </div>
-    )
-}
+const Section = ({ children, h2 = null, text = null, ...props }) => {
+  return (
+    <section {...props}>
+      {h2 && <h2 className="section-title">{h2}</h2>}
+      {text && <p className="section-text">{text}</p>}
+      {children.map((c, k) => {
+        const Component = DynamicRenderer(c.component);
 
-export default Section
+        return <Component key={k} {...c.props} />;
+      })}
+    </section>
+  );
+};
+
+export default Section;

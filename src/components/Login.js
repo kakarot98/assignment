@@ -1,19 +1,24 @@
 import React, { useState } from "react";
+import { useAuth } from "../hooks/auth";
 
 const Login = () => {
+  const { user, login, logout } = useAuth();
+
   const [username, setUsername] = useState("");
   const [password, setpassword] = useState("");
 
   const loginToApp = (e) => {
     e.preventDefault();
-    console.log(username + password);
-    setUsername("");
-    setpassword("");
+
+    const isLoggedIn = login(username, password);
+    if (!isLoggedIn) {
+      setpassword("");
+    }
   };
 
   return (
     <div>
-      <form onSubmit={loginToApp}>
+      <form>
         <h1>Login</h1>
         <div>
           <label>Username: </label>
@@ -34,7 +39,7 @@ const Login = () => {
           />
         </div>
         <div>
-          <button type="submit">Submit</button>
+          <button onClick={loginToApp}>Submit</button>
         </div>
       </form>
     </div>

@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-const Tag = () => {
-    return (
-        <div>
-            This is a tag
-        </div>
-    )
-}
+const Tag = ({ children, tag, className }) => {
+  const Element = React.createElement(tag, { className }, children);
 
-export default Tag
+  return Element;
+};
+
+export default Tag;
