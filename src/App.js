@@ -1,7 +1,6 @@
 import "./App.css";
 import React, { Suspense } from "react";
 import Login from "./components/Login";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import dataArray from "./components/data";
 import { useAuth } from "./hooks/auth";

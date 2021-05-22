@@ -3,7 +3,7 @@ import React, { useState, createContext, useContext, useEffect } from "react";
 export const AuthContext = createContext({
   user: null,
   login: () => {},
-  logout: () => {}
+  logout: () => {},
 });
 
 const useProvideAuth = () => {
@@ -11,7 +11,10 @@ const useProvideAuth = () => {
 
   const login = (username, password) => {
     if (username === "admin" && password === "admin123") {
-      localStorage.setItem("loggedIn", { username, date: Date.now() });
+      localStorage.setItem(
+        "loggedIn",
+        JSON.stringify({ username, date: Date.now() })
+      );
       setUser({ username });
 
       return true;
@@ -23,7 +26,8 @@ const useProvideAuth = () => {
     const user = localStorage.getItem("loggedIn");
 
     if (user) {
-      setUser({ username: user.username });
+      const userObj = JSON.parse(user);
+      setUser({ username: userObj.username });
     }
   };
 

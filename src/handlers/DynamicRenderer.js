@@ -1,35 +1,39 @@
 import React from "react";
+import path from "path";
+import Section from "../components/render/Section";
 
 const mapKeys = {
   Section: {
     key: "Section",
-    path: "../components/renderComponents/Section"
+    path: "Section",
   },
   Col: {
     key: "Col",
-    path: "../components/renderComponents/Col"
+    path: "Col",
   },
   Row: {
     key: "Row",
-    path: "../components/renderComponents/Row"
+    path: "Row",
   },
   Tag: {
     key: "Tag",
-    path: "../components/renderComponents/Tag"
+    path: "Tag",
   },
   Card: {
     key: "Card",
-    path: "../components/renderComponents/Card"
+    path: "Card",
   },
   Markdown: {
     key: "Markdown",
-    path: "../components/renderComponents/Markdown"
-  }
+    path: "Markdown",
+  },
 };
 
-export const DynamicRenderer = (component) => {
-  if (typeof mapKeys[component] === "object") {
-    const RenderComponent = React.lazy(() => import(mapKeys[component].path));
+export const DynamicRenderer = (componentKey) => {
+  if (typeof mapKeys[componentKey] === "object") {
+    const RenderComponent = React.lazy(() =>
+      import(`../components/render/${mapKeys[componentKey].path}`)
+    );
 
     return RenderComponent;
   }

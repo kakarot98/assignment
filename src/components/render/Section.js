@@ -6,11 +6,12 @@ const Section = ({ children, h2 = null, text = null, ...props }) => {
     <section {...props}>
       {h2 && <h2 className="section-title">{h2}</h2>}
       {text && <p className="section-text">{text}</p>}
-      {children.map((c, k) => {
-        const Component = DynamicRenderer(c.component);
+      {children &&
+        children.map((c, k) => {
+          const Component = DynamicRenderer(c.component);
 
-        return <Component key={k} {...c.props} />;
-      })}
+          return <Component key={k} {...c.props} />;
+        })}
     </section>
   );
 };

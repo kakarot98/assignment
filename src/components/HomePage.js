@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { DynamicRenderer } from "../handlers/DynamicRenderer";
 
 const HomePage = ({ component, componentProps = {} }) => {
